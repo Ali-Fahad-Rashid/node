@@ -1,0 +1,58 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= post.title %></h2>
+    <div class="content">
+      <p><%= post.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= post._id %>">
+      <img src="/trashcan.svg" alt="delete icon">
+    </a>
+    <a class="edit" href="/posts/edit/<%= post._id %>">Edit
+    </a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/posts/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(
+         window.location.href = '/posts'
+        )
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+</html>
+
+
+
+<!-- $(document).ready(function(){
+  $('.delete-article').on('click', function(e){
+    $target = $(e.target);
+    const id = $target.attr('data-id');
+    $.ajax({
+      type:'DELETE',
+      url: '/articles/'+id,
+      success: function(response){
+        alert('Deleting Article');
+        window.location.href='/';
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
+  });
+}); -->
