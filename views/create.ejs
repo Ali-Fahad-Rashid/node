@@ -5,11 +5,21 @@
   <%- include("./partials/nav.ejs") %>
 
   <div class="create-blog content">
-    <form action="/posts" method="POST">
+    <% if (messages.success) { %>
+      <%= messages.success %>
+    <% } %>
+    <form action="/posts" method="POST" enctype="multipart/form-data">
       <label for="title">post title:</label>
       <input type="text" id="title" name="title" required>
       <label for="snippet">post snippet:</label>
       <input type="text" id="snippet" name="snippet" required>
+
+<!--       <label>Select Picture:</label>
+      <input type="file" name="avatar" /> -->
+
+       <label>Select multiple images:</label>
+      <input type="file" name="photos" multiple required/>
+
       <label for="body">post body:</label>
       <textarea id="body" name="body" required></textarea>
       <button>Submit</button>

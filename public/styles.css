@@ -59,7 +59,7 @@
       display: block;
       margin: 40px 0;
       padding-left: 30px;
-      border-left: 6px solid crimson;
+      border-left: 6px dashed rgb(220, 133, 20);
     }
     .blogs a:hover h3{
       color: crimson;
@@ -90,6 +90,17 @@
       padding: 8px;
     }
     .edit:hover{
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    }
+
+    .mmm{
+      position: absolute;
+      top: -66;
+      right: 0;
+      border-radius: 50%;
+    }
+    .mmm:hover{
       cursor: pointer;
       box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
     }

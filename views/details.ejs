@@ -7,11 +7,11 @@
   <div class="details content">
     <h2><%= post.title %></h2>
     <div class="content">
-      <p><%= post.body %></p>
-    </div>
-    <a class="delete" data-doc="<%= post._id %>">
-      <img src="/trashcan.svg" alt="delete icon">
-    </a>
+      <p><%= post.body %></p><br></br>
+      <% post.images.forEach(post => { %>
+        <img class='' src="../uploads/<%= post %>" height="70" width="70">
+        <% }) %>    </div>
+    <a class="delete" data-doc="<%= post._id %>">DELETE</a>
     <a class="edit" href="/posts/edit/<%= post._id %>">Edit
     </a>
   </div>

@@ -5,13 +5,17 @@
   <%- include("./partials/nav.ejs") %>
 
   <div class="blogs content">
-    <h2>All Posts</h2>
-
+  <% if (messages.success) { %>
+    <%= messages.success %>
+  <% } %>
     <% if (posts.length > 0) { %>
       <% posts.forEach(post => { %>
         <a class="single" href="/posts/<%= post._id %>">
           <h3 class="title"><%= post.title %></h3>
           <p class="snippet"><%= post.snippet %></p>
+          <div class="details ">
+          <img class='mmm' src="../uploads/<%= post.images[0] %>" height="70" width="70">
+          </div>
         </a>
       <% }) %>
     <% } else { %>

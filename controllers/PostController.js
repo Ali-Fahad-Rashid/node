@@ -2,6 +2,7 @@ const Post = require('../models/post');
 const index = (req, res) => {
    Post.find().sort({ createdAt: -1 })
     .then(result => {
+
       res.render('index', { posts: result, title: 'All Posts' });
     })
     .catch(err => {
@@ -23,16 +24,20 @@ const create_get = (req, res) => {
   res.render('create', { title: 'Create a new post' });
 }
 
-const create_post = (req, res) => {
+/* const create_post = (req, res) => {
 const Post1 = new Post(req.body);
   Post1.save()
     .then(result => {
+      req.flash('success', 'Article Updated');
+
       res.redirect('/posts');
+
+
     })
     .catch(err => {
       console.log(err);
     });
-}
+} */
 
 const delete_post = (req, res) => {
   const id = req.params.id;
@@ -78,8 +83,8 @@ module.exports = {
   index, 
   details, 
   create_get, 
-  create_post, 
-  delete_post,
+/*  // create_post, 
+ */  delete_post,
   edit_post,
   edit_get,
 }

@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   title: {
     type: String,
-    required: true,
   },
   snippet: {
     type: String,
-    required: true,
   },
   body: {
     type: String,
-    required: true
+  },
+  images: {
+    type: Array,
   },
 }, { timestamps: true });
 
