@@ -1,19 +1,6 @@
 const express = require('express');
-const PostController = require('../controllers/PostController');
 const create_post = express.Router();
 const Post = require('../models/post');
-
-
-
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    } else {
-      res.redirect('/login');
-    }
-  }
-
-
   
 const path = require('path');
 const multer = require('multer');

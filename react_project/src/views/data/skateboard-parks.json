@@ -1,0 +1,30 @@
+{
+
+  "features": [
+    {
+      "properties": {
+        "PARK_ID": 960,
+        "name": "ssssssssssssss",
+        "DESCRIPTIO": "sssssssssssssss"
+
+      },
+      "geometry": {
+        "image": "logo512.png",
+        "coordinates": [-75.3372987731628, 45.383321536272049]
+      }
+    },
+    {
+      "properties": {
+        "PARK_ID": 961,
+        "name": "aaaaaaaa",
+        "DESCRIPTIO": "ddddddddddddddddd"
+
+      },
+      "geometry": {
+        "image": "skateboarding.svg",
+        "coordinates": [-75.546518086577947, 45.467134581917357]
+      }
+    }
+  
+  ]
+}

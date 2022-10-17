@@ -1,9 +1,47 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-const dbURI = "mongodb+srv://Ali:221@node.tun9j.mongodb.net/node?retryWrites=true&w=majority";
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(result => app.listen(3000)).catch(err => console.log(err));
+
+
+
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+
+io.on('connection', (socket) => {
+  
+  //console.log('made socket connection', socket.id);
+
+  socket.on('chat', (data) => {
+    io.emit('chat', data);
+    console.log(data);
+
+
+
+
+
+
+  });
+
+
+  socket.on('typing', function(data){
+      socket.broadcast.emit('typing', data);
+  });
+
+
+});
+server.listen(4001)
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+///server.listen(4001)
+console.log('aaaaaa')})
+.catch(err => console.log(err));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(require('body-parser').urlencoded({ extended: true }));
@@ -22,8 +60,13 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
 app.get('*', function (req, res, next) {
   res.locals.user = req.user || null;
+
+
   next();
 });
 
@@ -33,8 +76,57 @@ const Userrouter = require('./routes/users');
 app.use('/', Userrouter);
 app.use('/', Routes);
 app.use('/', create_post);
-const HomeController = require('./controllers/HomeController');
-app.use(HomeController.NotFound);
 
 
-/*  */
+//const bodyParser = require('body-parser');
+const cors = require('cors');
+
+app.use(express.json());
+
+//app.use(bodyParser.json());
+app.use(cors());
+
+ var posts = require('./routes/api/posts');
+app.use('/api/posts', posts);
+
+var userss = require('./routes/api/users');
+app.use('/api', userss); 
+
+
+
+
+
+
+
+
+
+/* 
+const mysql = require('mysql');
+
+// Create connection
+const db = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'test'
+});
+
+// Connect
+db.connect((err) => {
+    if(err){
+        throw err;
+    }
+
+});
+
+
+
+    let post = {username:data.handle, message:data.message};
+    let sql = 'INSERT INTO chat SET ?';
+     db.query(sql, post, (err, result) => {
+        if(err) throw err;
+
+    });
+
+    
+ */

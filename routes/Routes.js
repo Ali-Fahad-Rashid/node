@@ -6,6 +6,9 @@ const router = express.Router();
 router.get('/', HomeController.index); 
 router.get('/about', HomeController.about);
 router.get('/posts/create' ,PostController.create_get);
+
+router.get('/chat' ,ensureAuthenticated,PostController.chat);
+
 router.get('/posts', PostController.index);
 router.get('/posts/edit/:id', PostController.edit_get);
 router.post('/posts/edit/:id', PostController.edit_post);

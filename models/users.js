@@ -18,6 +18,9 @@ const userSchema = new Schema({
   googleId: {
     type: String,
   },
+  token: {
+    type: String,
+  },
 }, { timestamps: true });
 
 userSchema.plugin(findOrCreate);

@@ -51,11 +51,15 @@ Userrouter.get('/login', async (req, res) => {
   res.render('users/login' , { title: 'login' });
 });
 
-Userrouter.post('/login', passport.authenticate(['local', 'facebook'], { 
+var LocalStorage = require('node-localstorage').LocalStorage,
+LocalStorage = new LocalStorage('./public');
+
+Userrouter.post('/login', passport.authenticate('local', { 
     failureRedirect: '/login', 
      failureFlash: true
 }),
   function(req, res) {
+
     res.redirect('/');
   });
 

@@ -24,6 +24,10 @@ const create_get = (req, res) => {
   res.render('create', { title: 'Create a new post' });
 }
 
+const chat = (req, res) => {
+  res.render('chat', { title: 'Create a new post' });
+}
+
 /* const create_post = (req, res) => {
 const Post1 = new Post(req.body);
   Post1.save()
@@ -87,4 +91,5 @@ module.exports = {
  */  delete_post,
   edit_post,
   edit_get,
+  chat
 }
